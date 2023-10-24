@@ -168,10 +168,13 @@ class Payment2 {
   date!: Date;
 }
 
+//inheritance
+
 class UserWithPayment extends Payment2 {
   name!: string;
 }
-//inheritance
+
+//composition
 
 class UserWithPayment1 {
   user: User1;
@@ -180,4 +183,132 @@ class UserWithPayment1 {
     (this.payment = payment), (this.user = user);
   }
 }
-//composition
+
+class Vehicle {
+  public make!: string;
+  private damages!: string[];
+  private _model!: string;
+  protected run!: number;
+  #price!: number;
+
+  set model(model: string) {
+    this._model = model;
+    this.#price = 100;
+  }
+
+  get model() {
+    return this._model;
+  }
+  addDamage(damage: string) {
+    this.damages.push();
+  }
+
+  isPriceEqual(v: Vehicle) {
+    this.#price === v.#price;
+  }
+}
+
+class EuroTruck extends Vehicle {
+  serRun(km: number) {
+    this.run = km * 0.62;
+    //this.damage error
+    //this.#price=100 error
+  }
+}
+
+class UserService {
+  private static db: any;
+
+  static getUser(id: number) {
+    return UserService.db.find(id);
+  }
+  create() {
+    UserService.db;
+  }
+  static {
+    UserService.db = "";
+  }
+}
+
+UserService.getUser(1);
+const inst = new UserService();
+inst.create();
+
+//context
+
+class Payment3 {
+  private date: Date = new Date();
+  getDate(this: Payment3 | this) {
+    return this.date;
+  }
+  getDateArrow = () => {
+    return this.date;
+  };
+}
+
+const p = new Payment3();
+
+const user2 = {
+  id: 1,
+  getPaymentDate: p.getDate.bind(p),
+  getPaymentDateArrow: p.getDateArrow(),
+};
+
+p.getDate();
+user2.getPaymentDate();
+
+class PaymentPersistent1 extends Payment3 {
+  save() {
+    super.getDate();
+    // super.getDateArrow() error
+    this.getDateArrow();
+  }
+}
+
+class UserBuilder {
+  name!: string;
+
+  setName(name: string): this {
+    this.name = name;
+    return this;
+  }
+  //context type guard
+  isAdmin(): this is AdminBuilder {
+    return this instanceof AdminBuilder;
+  }
+}
+
+class AdminBuilder extends UserBuilder {
+  roles!: string[];
+}
+
+const user3: UserBuilder | AdminBuilder = new UserBuilder();
+if (user3.isAdmin()) {
+  console.log(user3);
+} else {
+  console.log(user3);
+}
+
+//abstraction
+
+abstract class Controller {
+  //abstact method used only in abstract class
+  abstract handle(req: any): void;
+  handelWithLogs(req: any) {
+    console.log("Start");
+    this.handle(req);
+    console.log("End");
+  }
+}
+// new Controller() - errror
+
+class UserController extends Controller {
+  handle(req: any): void {
+    console.log(req);
+  }
+}
+
+const c = new UserController();
+
+c.handelWithLogs("Request");
+c.handle("");
