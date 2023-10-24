@@ -82,10 +82,12 @@ function typeMaping(user: User): Admin {
 function isString(x: string | number): x is string {
   return typeof x === "string";
 }
+//type guard
 
 function isAdmin(user: User | Admin): user is Admin {
   return (user as Admin).role !== undefined;
 }
+//type guard
 
 function logIn(id: string | number) {
   if (isString(id)) {
@@ -108,6 +110,8 @@ type Responce = IResponseFailed | IResponseSuccess;
 function isSucess(res: Responce): res is IResponseSuccess {
   return (res as IResponseSuccess).status === PaymentStatus.SUCCESS;
 }
+
+//type guard
 
 function getIdFromData(res: Responce): number {
   if (isSucess(res)) {

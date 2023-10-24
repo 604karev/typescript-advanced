@@ -143,4 +143,41 @@ class PersistencePayment extends Payment1 {
 
 const mypayment = new PersistencePayment();
 
+class User1 {
+  name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+class Users1 extends Array<User1> {
+  searchByName(name: string) {
+    return this.filter((u) => u.name === name);
+  }
+  override toString(): string {
+    return this.map((u) => u.name).join(", ");
+  }
+}
 
+const users1 = new Users1();
+users1.push(new User1("Jack"));
+users1.push(new User1("Mike"));
+
+console.log(users1.toString());
+
+class Payment2 {
+  date!: Date;
+}
+
+class UserWithPayment extends Payment2 {
+  name!: string;
+}
+//inheritance
+
+class UserWithPayment1 {
+  user: User1;
+  payment: Payment2;
+  constructor(user: User1, payment: Payment2) {
+    (this.payment = payment), (this.user = user);
+  }
+}
+//composition
