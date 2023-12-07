@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
+  "name": "typescript-advanced",
+  "description": "��#\u0000 \u0000t\u0000y\u0000p\u0000e\u0000s\u0000c\u0000r\u0000i\u0000p\u0000t\u0000-\u0000a\u0000d\u0000v\u0000a\u0000n\u0000c\u0000e\u0000d\u0000\r\u0000 \u0000",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/604karev/node-typescript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/604karev/node-typescript/issues"
+  },
+  "homepage": "https://github.com/604karev/node-typescript#readme"
+}
