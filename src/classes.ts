@@ -185,11 +185,11 @@ class UserWithPayment1 {
 }
 
 class Vehicle {
-  public make!: string;
-  private damages!: string[];
+  public make!: string; // accesable in instance, class and extended class, defaul state
+  private damages!: string[]; // accesable only in class and don't accesable extended class can acces with methods, getters and setters
   private _model!: string;
-  protected run!: number;
-  #price!: number;
+  protected run!: number; // assesable as a private, but accessable in extended class
+  #price!: number; //private fron Js
 
   set model(model: string) {
     this._model = model;
@@ -207,6 +207,7 @@ class Vehicle {
     this.#price === v.#price;
   }
 }
+
 
 class EuroTruck extends Vehicle {
   serRun(km: number) {
